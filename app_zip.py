@@ -54,11 +54,9 @@ def cluster_lat_lon(lat, lon):
 
 
 # Open the ZIP file
-with zipfile.ZipFile('modelo_xgb.zip', 'r') as zip_ref:
-    # Read the model file into memory
-    with zip_ref.open('modelo_xgb.pkl') as model_file:
-        # Load the model using joblib from the in-memory buffer
-        modelo = joblib.load(BytesIO(model_file.read()))
+with zipfile.ZipFile("Dataframe_airbnb.zip", "r") as z:
+    with z.open("modelo.joblib") as f:  # abre dentro do zip
+        modelo = joblib.load(f)   
 
 #Formatação da Página------------------------------------------------------------------------------------------------------
 
@@ -193,4 +191,5 @@ if st.button("Prever preço"):
     pred_real = np.expm1(pred_log)
     pred_real = str(f'{pred_real:.2f}').replace('.', ',')
     st.success(f"💰 Preço estimado: R$ {pred_real}")
+
 
