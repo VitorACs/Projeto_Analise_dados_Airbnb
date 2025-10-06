@@ -25,17 +25,15 @@ def mapa_df():
     return mapa
 
 def coordenadas(endereco):
-    chave_api = '4b70b0c70d6a4ce2bdf09567472f1bfe'  # substitua por variável de ambiente em produção
-    geocoder = OpenCageGeocode(chave_api)
+    #chave_api = 'API_KEY'  # substitua por variável de ambiente em produção
+    #geocoder = OpenCageGeocode(chave_api)
 
-    results = geocoder.geocode(endereco)
+    #results = geocoder.geocode(endereco)
 
-    if results and len(results):
-        latitude = results[0]['geometry']['lat']
-        longitude = results[0]['geometry']['lng']
-        return latitude, longitude
-    else:
-        return None, None 
+    #if results and len(results):
+        #latitude = results[0]['geometry']['lat']
+        #longitude = results[0]['geometry']['lng']
+    return -20.256, -26.012 # apenas para visualização
     
 def cluster_lat_lon(lat, lon):
 
@@ -195,3 +193,4 @@ if st.button("Prever preço"):
     pred_real = np.expm1(pred_log)
     pred_real = str(f'{pred_real:.2f}').replace('.', ',')
     st.success(f"💰 Preço estimado: R$ {pred_real}")
+
