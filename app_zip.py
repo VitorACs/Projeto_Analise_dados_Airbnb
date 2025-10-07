@@ -46,8 +46,8 @@ def cluster_lat_lon(lat, lon):
 #Modelo---------------------------------------------------------------------------------------------------------------------
 
 # Abrindo o ZIP e carregando o modelo
-with zipfile.ZipFile(zip_path, "r") as z:
-    with z.open(nome_arquivo_pkl) as f:
+with zipfile.ZipFile("modelo_xgb.zip", "r") as z:
+    with z.open("modelo_xgb.pkl") as f:
         modelo = pickle.load(f)
 
 #Formatação da Página------------------------------------------------------------------------------------------------------
@@ -183,6 +183,7 @@ if st.button("Prever preço"):
     pred_real = np.expm1(pred_log)
     pred_real = str(f'{pred_real:.2f}').replace('.', ',')
     st.success(f"💰 Preço estimado: R$ {pred_real}")
+
 
 
 
