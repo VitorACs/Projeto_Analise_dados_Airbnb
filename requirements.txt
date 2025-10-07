@@ -5,3 +5,4 @@ plotly
 opencage
 scikit-learn
 joblib
+xgboost
