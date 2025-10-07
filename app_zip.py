@@ -11,12 +11,6 @@ from io import BytesIO
 
 #Funções-----------------------------------------------------------------------------------------------------------------
 
-def abrir_zip(zip_path, csv_name):   
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        with zip_ref.open(csv_name) as file:
-            df = pd.read_csv(file)
-    return df
-
 def mapa_df():
     df = pd.read_csv(r'Dataframe_airbnb\listings_tratada.csv')
     centro_mapa = {'lat': df['latitude'].mean(), 'lon': df['longitude'].mean()}
@@ -51,12 +45,9 @@ def cluster_lat_lon(lat, lon):
 
 #Modelo---------------------------------------------------------------------------------------------------------------------
 
-
-
-# Open the ZIP file
 with zipfile.ZipFile("modelo_xgb.zip", "r") as z:
-    with z.open("modelo.joblib") as f:  
-        modelo = joblib.load(f)   
+    with z.open("modelo_xgb.joblib") as f: 
+        modelo = joblib.load(f)
 
 #Formatação da Página------------------------------------------------------------------------------------------------------
 
@@ -191,6 +182,7 @@ if st.button("Prever preço"):
     pred_real = np.expm1(pred_log)
     pred_real = str(f'{pred_real:.2f}').replace('.', ',')
     st.success(f"💰 Preço estimado: R$ {pred_real}")
+
 
 
 
